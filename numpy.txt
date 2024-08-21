@@ -1,0 +1,10 @@
+np.zeros((m, n)) -> cria uma matriz com m x n zeros
+np.ones((m, n)) -> cria uma matriz com m x n uns
+np.empty((m, n)) -> cria uma matriz m x n vazia
+np.nditer(matriz) -> olha os elementos de uma matriz
+np.ndindex(shape -> (n, n)) -> olha a posição de cada elementos da matriz
+np.ndenumerate(matriz) -> junção de iter e index
+np.array([[...], [...], ...]) -> cria uma matriz
+np.arange(i = start, f = stop, p = step) -> cria um array começando em i e pulando de p em p até f
+np.linspace(i = start, f = stop, n = num) -> cria um array começando em i e terminando em f, com a quantidade de elementos separados igualmente em n quantidades
+np.eye(n) -> cria uma matriz identidade n x n
