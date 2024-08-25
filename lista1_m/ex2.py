@@ -1,11 +1,10 @@
 """
-Escreva uma função que receba dois números naturais m , n , que seguem duas restrições: m < n 
-e m não pode ser divisor de n (com excessão do caso m = 1 que pode ser permitido). A função 
-deve retornar uma matriz n × n preenchida com os números naturais de 1 a n 2 .
+Escreva uma função que receba dois números naturais não-nulos m, n , que seguem duas restrições: m < n e m e n devem ser 
+primos entre si. A função deve retornar uma matriz n × n preenchida com os números naturais de 1 a n^2 .
 
-O preenchimento deve ser realizado no sentido horizontal, mas seguindo uma regra especial: a 
-inserção dos números deve ser feita em passos de m em m casas. Caso m e n não atendam os 
-requisitos, a função deve imprimir uma mensagem avisando do problema e retornar None.
+O preenchimento deve ser realizado no sentido horizontal, mas seguindo uma regra especial: a inserção dos números deve 
+ser feita em passos de m em m casas. Caso m e n não atendam os requisitos, a função deve imprimir uma mensagem avisando 
+do problema e retornar None.
 
 Exemplo de retorno para m = 2 e n = 3 :
 
@@ -28,35 +27,23 @@ def matriz(m, n):
     if m >= n:
         print("m deve ser menor do que n")
         return None
-    if m != 1 and n % m == 0:
-        print("m não pode ser divisor de n")
-        return None
+
+    for i in range(2, min(m,n) + 1):
+      if m % i == 0 and n % i == 0:
+        print("m e n devem ser primos entre si")
+        return None 
     
-    m_0 = np.zeros((n, n))
-    e_alterados = 0
-    #while e_alterados < n**2:
-        #for i in range(n**2):
+    m_0 = np.zeros((n, n), dtype=int) #matriz de zeros
+    matriz_in_list = list(range(1, n**2 + 1)) #lista com n**2 elementos
+    e_alt = 0 #número que será alterado na lista
 
-    #for i in np.nditer(m_0):
-        #print(i)
+    for i in range(n):
+      for j in range(n):
+        m_0[i, j] =  matriz_in_list[e_alt]
+        e_alt = (e_alt + m + n) % (n**2)
 
-""" m_0 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-for i in np.nditer(m_0):
-    print(i)
-for j in np.ndenumerate(m_0):
-    print(f'j = {j}')
-for k in np.ndindex(m_0.shape):
-    m_0[k] = 10    
-    
-print(m_0)
+    return m_0
 
-""" 
-m_0 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-e = np.reshape(m_0, (1, 1))
-print(e)
-"""
-3 x 3
-[[0, 0, 0],
- [0, 0, 0],
- [0, 0, 0]]
-"""
+print(matriz(2, 3))
+print(matriz(3, 5))
+print(matriz(6, 10))
