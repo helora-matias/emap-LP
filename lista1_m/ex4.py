@@ -31,8 +31,8 @@ def retangulos(**kwargs):
     ret1 = kwargs[rets[i]]
     for j in range(i + 1, len(rets)):
       ret2 = kwargs[rets[j]]
-      for vertice in b:
-        if a[0][0] <= vertice[0] <= a[1][0] and a[3][1] <= vertice[1] <= a[0][1]:
+      for vertice in ret2:
+        if ret1[0][0] <= vertice[0] <= ret1[1][0] and ret1[3][1] <= vertice[1] <= ret1[0][1]:
           colisoes.append((rets[i], rets[j]))
 
   return colisoes

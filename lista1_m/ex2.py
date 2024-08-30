@@ -44,6 +44,7 @@ def matriz(m, n):
 
     return m_0
 
+print(matriz(1, 3))
 print(matriz(2, 3))
 print(matriz(3, 5))
 print(matriz(6, 10))

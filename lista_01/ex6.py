@@ -1,27 +1,63 @@
+def transformation(list):
+  palavras = []
+  for i in list:
+    t = i.translate(str.maketrans('', '', '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'))
+    mini = t.lower()
+    palavras_i = mini.split()
+    palavras.append(palavras_i)
+  return palavras
+
 def obter_estatisticas(text):
   linhas = text.splitlines()
   trans = transformation(linhas)
-  print(trans)
   qtd_tot = 0
   for i in trans:
     qtd_i = len(i)
     qtd_tot += qtd_i
   print(f"Número total de palavras: {qtd_tot}")
 
-  dict = {}
+  dictionary = {}
   for i in trans:
-    qtd = 0
     for j in i:
-      if j in dict:
-        continue
+      if j in dictionary:
+        dictionary[j] += 1
       else:
-        qtd += 1
-        dict[j] = qtd
-        print(dict)
+        dictionary[j] = 1
 
+  def my_func(e):
+      return e[1]
+  ordenados = list(sorted(dictionary.items(), key=my_func, reverse=True))
+
+  print("")
+  print("Top 5 palavras mais frequentes:")
+  index = 0
+  for i in ordenados:
+    while index < 5:
+      print(f"{index+1}. {ordenados[index][0]}: {ordenados[index][1]}")
+      index += 1
+
+  new_dict = {}
+  for i in range(len(trans[0])-1):
+    two = trans[0][i] + ' ' + trans[0][i+1]
+    if two in new_dict:
+      new_dict[two] += 1
+    else:
+      new_dict[two] = 1
+
+  ordenados1 = list(sorted(new_dict.items(), key=my_func, reverse=True))
+
+  print("")
+  print("Top 5 palavras mais frequentes:")
+  index = 0
+  for i in ordenados1:
+    while index < 5:
+      print(f"{index+1}. {ordenados1[index][0]}: {ordenados1[index][1]}")
+      index += 1
+    
 
 texto = "A programação em Python é divertida. A programação é poderosa e simples. Python é uma linguagem versátil."
 obter_estatisticas(texto)
+
 # Número total de palavras: 15
 
 # Top 5 palavras mais frequentes:

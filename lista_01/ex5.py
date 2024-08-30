@@ -1,3 +1,12 @@
+def transformation(list):
+  palavras = []
+  for i in list:
+    t = i.translate(str.maketrans('', '', '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'))
+    mini = t.lower()
+    palavras_i = mini.split()
+    palavras.append(palavras_i)
+  return palavras
+
 def termos(text, *args):
   linhas = text.splitlines()
   trans = transformation(linhas)
