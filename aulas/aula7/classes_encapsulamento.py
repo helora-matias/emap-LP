@@ -29,7 +29,6 @@ class Peca:
 def combinar_peca(*args):
     comb = []
     for peca1 in args:
-        
         i = 1
         if i < 4:
             peca2 = args[i]
@@ -45,6 +44,3 @@ cavalop = Peca('Cavalo', 'Preta')
 cavalob = Peca('Cavalo', 'Branco')
 
 combinar_peca(rei, rainha, cavalob, cavalop)
-
-
-
