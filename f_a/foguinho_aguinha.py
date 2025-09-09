@@ -8,12 +8,21 @@ screen = pygame.display.set_mode((1500, 1000))
 pygame.display.set_caption('Foguinho e Aguinha')
 
 WaterGirl = pygame.image.load('aguinha.png')
-wg = WaterGirl.get_rect()
 WaterGirl = pygame.transform.scale(WaterGirl, (100, 100))
+wg = WaterGirl.get_rect()
+wg.topleft = (100, 100)
 
 FireBoy = pygame.image.load('foguinho.png')
-fb = FireBoy.get_rect()
 FireBoy = pygame.transform.scale(FireBoy, (100, 100))
+fb = FireBoy.get_rect()
+fb.topleft = (300, 100)
+
+Diamond = pygame.image.load('diamante.png')
+Diamond = pygame.transform.scale(Diamond, (60, 60))
+dm = Diamond.get_rect()
+dm.topleft = (600, 300)
+
+dm_visible = True
 
 # mascara = pygame.mask.from_surface(WaterGirl)
 
@@ -43,11 +52,20 @@ while running:
     if keys[pygame.K_d]:
         fb.x += 1
     
+    # Verifica colisão entre personagens e o diamante
+    if dm_visible:
+        if wg.colliderect(dm) or fb.colliderect(dm):
+            dm_visible = False  # diamante some
+
     # Preenche a tela com branco
     screen.fill((255, 255, 255))
 
     screen.blit(WaterGirl, wg)
     screen.blit(FireBoy, fb)
+
+    # Desenha o diamante apenas se ainda estiver visível
+    if dm_visible:
+        screen.blit(Diamond, dm)
 
     # Desenha o retângulo na tela
     # pygame.draw.rect(screen, rect_color, rect)
