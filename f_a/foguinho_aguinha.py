@@ -24,8 +24,6 @@ dm.topleft = (600, 300)
 
 dm_visible = True
 
-# mascara = pygame.mask.from_surface(WaterGirl)
-
 # Loop principal do jogo
 running = True
 while running:
@@ -60,15 +58,13 @@ while running:
     # Preenche a tela com branco
     screen.fill((255, 255, 255))
 
+    # Desenha os personagens
     screen.blit(WaterGirl, wg)
     screen.blit(FireBoy, fb)
 
     # Desenha o diamante apenas se ainda estiver visível
     if dm_visible:
         screen.blit(Diamond, dm)
-
-    # Desenha o retângulo na tela
-    # pygame.draw.rect(screen, rect_color, rect)
 
     # Atualiza a tela
     pygame.display.flip()
